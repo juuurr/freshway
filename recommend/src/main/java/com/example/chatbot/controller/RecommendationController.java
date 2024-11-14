@@ -15,26 +15,6 @@ public class RecommendationController {
     @Autowired
     private RestTemplate restTemplate;
 
-    // 다른 경로에서만 사용
-//    @GetMapping("/recommendations/all")
-//    public ResponseEntity<Map<String, List<Map<String, Object>>>> getAllRecommendations() {
-//        String url = "http://localhost:8000/recommendations/all";
-//
-//        // 외부 API 호출하여 추천 데이터 가져오기
-//        Map<String, List<Map<String, Object>>> allRecommendations = restTemplate.getForObject(url, Map.class);
-//
-//        return ResponseEntity.ok(allRecommendations);
-//    }
-//
-//    @GetMapping("/recommendations/all2")
-//    public ResponseEntity<Map<String, List<Map<String, Object>>>> getAllRecommendations() {
-//        String url = "http://localhost:8001/recommendations/all2";
-//
-//        // 외부 API 호출하여 추천 데이터 가져오기
-//        Map<String, List<Map<String, Object>>> allRecommendations = restTemplate.getForObject(url, Map.class);
-//
-//        return ResponseEntity.ok(allRecommendations);
-//    }
 
     @GetMapping("/recommendations/all")
     public ResponseEntity<Map<String, List<Map<String, Object>>>> getAllRecommendations() {
