@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>환자 차트</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+
+<div id="wrapper">
+
+
+<!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion mb-4" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <div class="sidebar-brand-icon bg-transparent">
+                <img src="/data/cj2.png" width="60" class="img-fluid my-auto">
+            </div>
+            <div class="sidebar-brand-text mx-2">Fresh Menu</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+            <a class="nav-link" href="index.html">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>일반식 메뉴 추천</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="index2.html">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>관리식 메뉴 추천</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Charts
+        </div>
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" href="charts.html">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Patient Charts</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Database
+        </div>
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+            <a class="nav-link" href="menu.html">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Menu</span>
+            </a>
+        </li>
+
+        <li class="nav-item active">
+            <a class="nav-link" href="patient.html">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Patient</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-comlun">
+
+        <!-- Main Content -->
+        <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <!-- Sidebar Toggle (Topbar) -->
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                <i class="fa fa-bars"></i>
+            </button>
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav ml-auto">
+            </ul>
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Table Content -->
+        <div class="container-fluid">
+            <h1 class="h3 mb-2 text-gray-800">환자 데이터 차트</h1>
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>Patient ID</th>
+                                <th>Age</th>
+                                <th>Gender</th>
+                                <th>Height (cm)</th>
+                                <th>Weight (kg)</th>
+                                <th>Chronic Diseases</th>
+                                <th>Blood Pressure (mmHg)</th>
+                                <th>Blood Glucose (mg/dL)</th>
+                                <th>Cholesterol (mg/dL)</th>
+                                <th>Diagnosis</th>
+                                <th>Medications</th>
+                                <th>Systolic BP</th>
+                                <th>Diastolic BP</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="patient : ${patients}">
+                                <td th:text="${patient.id}"></td>
+                                <td th:text="${patient.age}"></td>
+                                <td th:text="${patient.gender}"></td>
+                                <td th:text="${patient.height}"></td>
+                                <td th:text="${patient.weight}"></td>
+                                <td th:text="${patient.chronicDiseases}"></td>
+                                <td th:text="${patient.bloodPressure}"></td>
+                                <td th:text="${patient.bloodGlucose}"></td>
+                                <td th:text="${patient.cholesterol}"></td>
+                                <td th:text="${patient.diagnosis}"></td>
+                                <td th:text="${patient.medications}"></td>
+                                <td th:text="${patient.systolicBp}"></td>
+                                <td th:text="${patient.diastolicBp}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Table Content -->
+        </div>
+    </div>
+</div>
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/js/sb-admin-2.min.js"></script>
+<script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            pageLength: 15,
+            lengthChange: true,
+            lengthMenu: [15, 20, 25, 30],
+            searching: true,
+            language: {
+                search: "검색:",
+                paginate: {
+                    previous: "이전",
+                    next: "다음"
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+
+</html>

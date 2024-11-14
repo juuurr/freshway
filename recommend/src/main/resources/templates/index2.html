@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Fresh Menu - 추천메뉴</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <div class="sidebar-brand-icon bg-transparent">
+                <img src="/data/cj2.png" width="60" class="img-fluid my-auto">
+            </div>
+            <div class="sidebar-brand-text mx-2">Fresh Menu</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+            <a class="nav-link" href="index.html">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>일반식 메뉴 추천</span>
+            </a>
+        </li>
+
+        <li class="nav-item active">
+            <a class="nav-link" href="index2.html">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>관리식 메뉴 추천</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Charts
+        </div>
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" href="charts.html">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Patient Charts</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Database
+        </div>
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+            <a class="nav-link" href="menu.html">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Menu</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+            <a class="nav-link" href="patient.html">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Patient</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+                </ul>
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                </div>
+
+                <!-- New Diet Recommendations Section with Button -->
+                <div class="row">
+                    <div class="col-lg-12 mb-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                                <h6 class="m-0 font-weight-bold text-primary">식단 추천</h6>
+                                <!-- Button to Trigger Model -->
+                                <button id="fetch-recommendations-btn" class="btn btn-primary">식단을 추천해주세요</button>
+                            </div>
+                            <div class="card-body" id="recommendations-container">
+                                <!-- Recommendations will be populated here dynamically -->
+                                <p>Click the button above to load recommendations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/js/sb-admin-2.min.js"></script>
+<script src="/vendor/chart.js/Chart.min.js"></script>
+
+<!-- JavaScript for fetching and displaying diet recommendations -->
+<script>
+    async function fetchDietRecommendations() {
+        try {
+            // FastAPI 서버의 엔드포인트 URL을 정확하게 입력
+            const response = await fetch('http://localhost:8001/recommendations/all2');  // 외부 서버 URL
+            const data = await response.json();
+
+            const container = document.getElementById('recommendations-container');
+            container.innerHTML = '';  // 로딩 메시지 초기화
+
+            // 추천 데이터 출력
+            for (const [condition, recommendations] of Object.entries(data)) {
+                const conditionDiv = document.createElement('div');
+                conditionDiv.classList.add('mb-4');
+
+                conditionDiv.innerHTML = `<h5 class="text-secondary">${condition} 추천 식단</h5>`;
+
+                const table = document.createElement('table');
+                table.classList.add('table', 'table-bordered', 'table-hover');
+                table.innerHTML = `
+            <thead>
+                <tr>
+                    <th>식품명</th>
+                    <th>나트륨(mg)</th>
+                    <th>에너지(kcal)</th>
+                    <th>지방(g)</th>
+                    <th>당류(g)</th>
+                    <th>탄수화물(g)</th>
+                    <th>단백질(g)</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            `;
+
+                recommendations.forEach(item => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                <td>${item['식품명'] || 'N/A'}</td>
+                <td>${item['나트륨(mg)'] || 0}</td>
+                <td>${item['에너지(kcal)'] || 0}</td>
+                <td>${item['지방(g)'] || 0}</td>
+                <td>${item['당류(g)'] || 0}</td>
+                <td>${item['탄수화물(g)'] || 0}</td>
+                <td>${item['단백질(g)'] || 0}</td>
+                `;
+                    table.querySelector('tbody').appendChild(row);
+                });
+
+                conditionDiv.appendChild(table);
+                container.appendChild(conditionDiv);
+            }
+        } catch (error) {
+            console.error("추천을 불러오는 중 오류 발생:", error);
+            document.getElementById('recommendations-container').textContent = '추천을 불러오는 데 실패했습니다.';
+        }
+    }
+
+    document.getElementById('fetch-recommendations-btn').addEventListener('click', fetchDietRecommendations);
+
+</script>
+
+</body>
+</html>
