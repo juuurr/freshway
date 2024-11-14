@@ -168,10 +168,10 @@
 
 <!-- JavaScript for fetching and displaying diet recommendations -->
 <script>
-    async function fetchDietRecommendations() {
+    async function fetchDietRecommendations2() {
         try {
             // FastAPI 서버의 엔드포인트 URL을 정확하게 입력
-            const response = await fetch('http://localhost:8001/recommendations/all2');  // 외부 서버 URL
+            const response = await fetch('recommendations/all2');  // 외부 서버 URL
             const data = await response.json();
 
             const container = document.getElementById('recommendations-container');
@@ -224,7 +224,7 @@
         }
     }
 
-    document.getElementById('fetch-recommendations-btn').addEventListener('click', fetchDietRecommendations);
+    document.getElementById('fetch-recommendations-btn').addEventListener('click', fetchDietRecommendations2);
 
 </script>
 

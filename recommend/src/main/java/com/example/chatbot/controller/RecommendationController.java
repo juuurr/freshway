@@ -46,7 +46,7 @@ public class RecommendationController {
 
     @GetMapping("/recommendations/all2")
     public ResponseEntity<Map<String, List<Map<String, Object>>>> getAllRecommendations2() {
-        String url = "http://localhost:8001/recommendations/all2";
+        String url = "http://localhost:8000/recommendations/all2";
         // External API call to fetch recommendation data
         Map<String, List<Map<String, Object>>> allRecommendations = restTemplate.getForObject(url, Map.class);
         return ResponseEntity.ok(allRecommendations);

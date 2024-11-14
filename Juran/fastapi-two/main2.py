@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 import numpy as np
+import uvicorn
 
 # FastAPI app initialization
 app2 = FastAPI()
@@ -93,5 +94,5 @@ def get_all_recommendations():
     
     return all_recommendations
 
-# Run the FastAPI app (uncomment for execution outside Jupyter or in a script)
-# uvicorn.run(app2, host="0.0.0.0", port=8001)
+if __name__ == "__main__":
+    uvicorn.run(app2, host="0.0.0.0", port=8001)
